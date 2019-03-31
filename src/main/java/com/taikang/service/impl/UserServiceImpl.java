@@ -1,7 +1,9 @@
 package com.taikang.service.impl;
 
-import java.util.List;
-
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
+import com.taikang.service.IUserService;
+import com.taikang.vo.UserVO;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -15,9 +17,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.mongodb.WriteResult;
-import com.taikang.service.IUserService;
-import com.taikang.vo.UserVO;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -87,7 +87,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public Integer update(UserVO userVO) {
+	public Long update(UserVO userVO) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("id").is(userVO.getId()));
 		
@@ -102,18 +102,18 @@ public class UserServiceImpl implements IUserService {
 			update.set("age", userVO.getAge());
 		}
 		
-		WriteResult result = mongoTemplate.updateFirst(query, update, UserVO.class);
+		UpdateResult result = mongoTemplate.updateFirst(query, update, UserVO.class);
 		
-		return result.getN();
+		return result.getModifiedCount();
 	}
 
 	@Override
 	public Boolean delete(String id) {
 		Criteria criteria = Criteria.where("id").is(new ObjectId(id));
 		Query query = new Query(criteria);
-		WriteResult writeResult = mongoTemplate.remove(query, UserVO.class);
+		DeleteResult deleteResult = mongoTemplate.remove(query, UserVO.class);
 		
-		return writeResult.getN() > 0;
+		return deleteResult.getDeletedCount() > 0;
 	}
 	
 }

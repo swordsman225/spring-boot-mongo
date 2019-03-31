@@ -16,7 +16,7 @@ public interface IUserService {
 	
 	public PageImpl<UserVO> queryPaging(Integer pageIndex, Integer pageSize, UserVO userVO);
 	
-	public Integer update(UserVO userVO);
+	public Long update(UserVO userVO);
 	
 	public Boolean delete(String id);
 	

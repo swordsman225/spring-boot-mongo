@@ -1,0 +1,12 @@
+{
+	"name": "CodeMan",
+	"$and": [
+		{"age": {"$lte": 35}},
+		{"age": {"$gte": 18}}
+	],
+	"$or": [
+		{"beauty": {"$gte": 80}},
+		{"weight": {"$lte": 50}}
+	],
+	"sound": {"$gt": 30}
+}
