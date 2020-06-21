@@ -1,4 +1,4 @@
-package com.huawei.hicloud;
+package com.huawei.hicloud.consumer;
 
 import lombok.Data;
 

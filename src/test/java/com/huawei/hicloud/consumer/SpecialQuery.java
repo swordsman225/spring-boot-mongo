@@ -1,4 +1,4 @@
-package com.huawei.hicloud;
+package com.huawei.hicloud.consumer;
 
 public class SpecialQuery {
 

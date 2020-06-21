@@ -74,8 +74,9 @@ public class UserServiceImpl implements IUserService {
 		}
 		
 		Query query = new Query(criteria);
-		Sort sort = new Sort(Direction.DESC, "age");
-		PageRequest pageRequest = new PageRequest(pageIndex, pageSize, sort);
+		Sort sort = Sort.by(Direction.DESC, "age");
+		PageRequest pageRequest = PageRequest.of(pageIndex, pageSize, sort);
+
 		query.with(pageRequest);
 		
 		long total = mongoTemplate.count(query, UserVO.class);

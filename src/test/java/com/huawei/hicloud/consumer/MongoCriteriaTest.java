@@ -1,4 +1,4 @@
-package com.huawei.hicloud;
+package com.huawei.hicloud.consumer;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
